@@ -1,2 +1,2 @@
 # Design-Optimization
-A handful of python scripts for numerical optimization
+A handful of python scripts for numerical optimization in engineering design problems.
