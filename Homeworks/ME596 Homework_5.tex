@@ -1,0 +1,491 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass{article}
+
+    
+    
+    \usepackage{graphicx} % Used to insert images
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{color} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage{ulem} % ulem is needed to support strikethroughs (\sout)
+    
+
+    
+    
+    \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+    \definecolor{darkorange}{rgb}{.71,0.21,0.01}
+    \definecolor{darkgreen}{rgb}{.12,.54,.11}
+    \definecolor{myteal}{rgb}{.26, .44, .56}
+    \definecolor{gray}{gray}{0.45}
+    \definecolor{lightgray}{gray}{.95}
+    \definecolor{mediumgray}{gray}{.8}
+    \definecolor{inputbackground}{rgb}{.95, .95, .85}
+    \definecolor{outputbackground}{rgb}{.95, .95, .95}
+    \definecolor{traceback}{rgb}{1, .95, .95}
+    % ansi colors
+    \definecolor{red}{rgb}{.6,0,0}
+    \definecolor{green}{rgb}{0,.65,0}
+    \definecolor{brown}{rgb}{0.6,0.6,0}
+    \definecolor{blue}{rgb}{0,.145,.698}
+    \definecolor{purple}{rgb}{.698,.145,.698}
+    \definecolor{cyan}{rgb}{0,.698,.698}
+    \definecolor{lightgray}{gray}{0.5}
+    
+    % bright ansi colors
+    \definecolor{darkgray}{gray}{0.25}
+    \definecolor{lightred}{rgb}{1.0,0.39,0.28}
+    \definecolor{lightgreen}{rgb}{0.48,0.99,0.0}
+    \definecolor{lightblue}{rgb}{0.53,0.81,0.92}
+    \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
+    \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+    
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{ME596 Homework\_5}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=blue,
+      linkcolor=darkorange,
+      citecolor=darkgreen,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsubsection{Problem 1.}\label{problem-1.}
+
+Solve the following problem using the Simplex Search Method:
+
+\[\mbox{min} \hspace{2 mm} f(x) = (1- x_1)^2 + (2 - x_2)^2\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{}Simplex search}
+        
+        \PY{c+c1}{\PYZsh{}Erin Schmidt}
+        
+        \PY{c+c1}{\PYZsh{}for non\PYZhy{}linear programming problems ala Nelder and Mead(1965)}
+        \PY{c+c1}{\PYZsh{}**Note** use Python3 for this script}
+        \PY{k+kn}{import} \PY{n+nn}{math} \PY{k}{as} \PY{n+nn}{m}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        
+        \PY{k}{def} \PY{n+nf}{simplex\PYZus{}search}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{n}{x\PYZus{}start}\PY{p}{,} \PY{n}{max\PYZus{}iter} \PY{o}{=} \PY{l+m+mi}{100}\PY{p}{,} \PY{n}{epsilon} \PY{o}{=} \PY{l+m+mi}{1}\PY{n}{E}\PY{o}{\PYZhy{}}\PY{l+m+mi}{6}\PY{p}{,} \PY{n}{gamma} \PY{o}{=} \PY{l+m+mi}{5}\PY{p}{,} \PY{n}{beta} \PY{o}{=} \PY{l+m+mf}{0.5}\PY{p}{)}\PY{p}{:}
+            \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+sd}{    parameters of the function:}
+        \PY{l+s+sd}{    f is the function to be optimized}
+        \PY{l+s+sd}{    x\PYZus{}start (numpy array): initial position}
+        \PY{l+s+sd}{    epsilon is the termination criteria}
+        \PY{l+s+sd}{    gamma is the contraction coefficient}
+        \PY{l+s+sd}{    beta is the expansion coefficient}
+        \PY{l+s+sd}{    \PYZdq{}\PYZdq{}\PYZdq{}}
+            
+            \PY{c+c1}{\PYZsh{}init arrays}
+            \PY{n}{N} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{x\PYZus{}start}\PY{p}{)}
+            \PY{n}{fnew} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{n}{xnew} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{n}{x} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            
+            \PY{c+c1}{\PYZsh{}generate vertices of initial simplex}
+            \PY{n}{a} \PY{o}{=} \PY{o}{.}\PY{l+m+mi}{75}
+            \PY{n}{x0} \PY{o}{=} \PY{p}{(}\PY{n}{x\PYZus{}start}\PY{p}{)}
+            \PY{n}{x1} \PY{o}{=} \PY{p}{[}\PY{n}{x0} \PY{o}{+} \PY{p}{[}\PY{p}{(}\PY{p}{(}\PY{n}{N} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mf}{0.5} \PY{o}{+} \PY{n}{N} \PY{o}{\PYZhy{}} \PY{l+m+mf}{1.}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n}{N} \PY{o}{+} \PY{l+m+mf}{1.}\PY{p}{)}\PY{o}{*}\PY{n}{a}\PY{p}{,} \PY{l+m+mf}{0.}\PY{p}{]}\PY{p}{]}
+            \PY{n}{x2} \PY{o}{=} \PY{p}{[}\PY{n}{x0} \PY{o}{+} \PY{p}{[}\PY{l+m+mf}{0.}\PY{p}{,} \PY{p}{(}\PY{p}{(}\PY{n}{N} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mf}{0.5} \PY{o}{\PYZhy{}} \PY{l+m+mf}{1.}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n}{N} \PY{o}{+} \PY{l+m+mf}{1.}\PY{p}{)}\PY{o}{*}\PY{n}{a}\PY{p}{]}\PY{p}{]} 
+            \PY{n}{x3} \PY{o}{=} \PY{p}{[}\PY{n}{x0} \PY{o}{\PYZhy{}} \PY{p}{[}\PY{l+m+mf}{0.}\PY{p}{,} \PY{p}{(}\PY{p}{(}\PY{n}{N} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mf}{0.5} \PY{o}{\PYZhy{}} \PY{l+m+mf}{1.}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n}{N} \PY{o}{+} \PY{l+m+mf}{1.}\PY{p}{)}\PY{o}{*}\PY{n}{a}\PY{p}{]}\PY{p}{]} 
+            \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{vstack}\PY{p}{(}\PY{p}{(}\PY{n}{x1}\PY{p}{,} \PY{n}{x2}\PY{p}{,} \PY{n}{x3}\PY{p}{)}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{}print(x)}
+        
+            \PY{c+c1}{\PYZsh{}simplex iteration}
+            \PY{k}{while} \PY{k+kc}{True}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{}find best, worst and 2nd worst points \PYZhy{}\PYZhy{}\PYZgt{} new center point}
+                \PY{n}{f\PYZus{}run} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{tolist}\PY{p}{(}\PY{p}{)} \PY{c+c1}{\PYZsh{}func. values at vertices}
+                \PY{c+c1}{\PYZsh{}print(f\PYZus{}run)}
+                \PY{n}{xw} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{n}{f\PYZus{}run}\PY{o}{.}\PY{n}{index}\PY{p}{(}\PY{n+nb}{sorted}\PY{p}{(}\PY{n}{f\PYZus{}run}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{]}	\PY{c+c1}{\PYZsh{}worst point}
+                \PY{n}{xb} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{n}{f\PYZus{}run}\PY{o}{.}\PY{n}{index}\PY{p}{(}\PY{n+nb}{sorted}\PY{p}{(}\PY{n}{f\PYZus{}run}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{]} 	\PY{c+c1}{\PYZsh{}best point}
+                \PY{n}{xs} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{n}{f\PYZus{}run}\PY{o}{.}\PY{n}{index}\PY{p}{(}\PY{n+nb}{sorted}\PY{p}{(}\PY{n}{f\PYZus{}run}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{p}{]}	\PY{c+c1}{\PYZsh{}2nd worst point}
+                \PY{n}{xc} \PY{o}{=} \PY{p}{(}\PY{n}{xb} \PY{o}{+} \PY{n}{xs}\PY{p}{)}\PY{o}{/}\PY{n}{N} \PY{c+c1}{\PYZsh{}center point				  }
+                \PY{n}{xr} \PY{o}{=} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{xc} \PY{o}{\PYZhy{}} \PY{n}{xw} \PY{c+c1}{\PYZsh{}reflection point}
+                
+                \PY{c+c1}{\PYZsh{}check cases}
+                \PY{k}{if} \PY{n}{f}\PY{p}{(}\PY{n}{xr}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{n}{f}\PY{p}{(}\PY{n}{xb}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{}expansion}
+                    \PY{n}{xnew} \PY{o}{=} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{xr} \PY{o}{\PYZhy{}} \PY{n}{xc}
+                    \PY{c+c1}{\PYZsh{}xnew = (1 \PYZhy{} gamma)*xc \PYZhy{} gamma*xr}
+                    \PY{c+c1}{\PYZsh{}print(\PYZsq{}a\PYZsq{}, f(xr), f(xb)) \PYZsh{}for debugging}
+                \PY{k}{elif} \PY{n}{f}\PY{p}{(}\PY{n}{xr}\PY{p}{)} \PY{o}{\PYZgt{}} \PY{n}{f}\PY{p}{(}\PY{n}{xw}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{}contraction 1}
+                    \PY{n}{xnew} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{beta}\PY{p}{)}\PY{o}{*}\PY{n}{xc} \PY{o}{+} \PY{n}{beta}\PY{o}{*}\PY{n}{xw}
+                    \PY{c+c1}{\PYZsh{}print(\PYZsq{}b\PYZsq{}, f(xr), f(xw))}
+                \PY{k}{elif} \PY{n}{f}\PY{p}{(}\PY{n}{xs}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{n}{f}\PY{p}{(}\PY{n}{xr}\PY{p}{)} \PY{o+ow}{and} \PY{n}{f}\PY{p}{(}\PY{n}{xr}\PY{p}{)} \PY{o}{\PYZlt{}} \PY{n}{f}\PY{p}{(}\PY{n}{xw}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{}contraction 2}
+                    \PY{n}{xnew} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{+} \PY{n}{beta}\PY{p}{)}\PY{o}{*}\PY{n}{xc} \PY{o}{\PYZhy{}} \PY{n}{beta}\PY{o}{*}\PY{n}{xw}
+                    \PY{c+c1}{\PYZsh{}print(\PYZsq{}c\PYZsq{}, f(xs), f(xr), f(xw))}
+                \PY{k}{else}\PY{p}{:}
+                    \PY{n}{xnew} \PY{o}{=} \PY{n}{xr}
+                
+                \PY{c+c1}{\PYZsh{}replace vertices}
+                \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}}
+        \PY{l+s+sd}{        if f(xnew) \PYZlt{} f(xb):}
+        \PY{l+s+sd}{        \PYZdq{}\PYZdq{}\PYZdq{}}
+                \PY{n}{x}\PY{p}{[}\PY{n}{f\PYZus{}run}\PY{o}{.}\PY{n}{index}\PY{p}{(}\PY{n+nb}{sorted}\PY{p}{(}\PY{n}{f\PYZus{}run}\PY{p}{)}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{n}{xnew}
+                \PY{c+c1}{\PYZsh{}x[1] = xb}
+                \PY{c+c1}{\PYZsh{}x[2] = xs}
+                \PY{n}{fnew}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{f}\PY{p}{(}\PY{n}{xnew}\PY{p}{)}\PY{p}{)}
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Current optimum = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fnew}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+                
+                \PY{c+c1}{\PYZsh{}break is any termination critera satisfied}
+                \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{fnew}\PY{p}{)} \PY{o}{==} \PY{n}{max\PYZus{}iter} \PY{o+ow}{or} \PY{n}{term\PYZus{}check}\PY{p}{(}\PY{n}{xb}\PY{p}{,} \PY{n}{xc}\PY{p}{,} \PY{n}{xs}\PY{p}{,} \PY{n}{xnew}\PY{p}{,} \PY{n}{N}\PY{p}{)} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{epsilon}\PY{p}{:}
+                    \PY{k}{return} \PY{p}{\PYZob{}}
+                        \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{n}{f\PYZus{}run}\PY{o}{.}\PY{n}{index}\PY{p}{(}\PY{n+nb}{sorted}\PY{p}{(}\PY{n}{f\PYZus{}run}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{]}\PY{p}{)}\PY{p}{,} 
+                        \PY{n}{x}\PY{p}{[}\PY{n}{f\PYZus{}run}\PY{o}{.}\PY{n}{index}\PY{p}{(}\PY{n+nb}{sorted}\PY{p}{(}\PY{n}{f\PYZus{}run}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{fnew}\PY{p}{)}
+                        \PY{p}{\PYZcb{}}
+        
+        \PY{k}{def} \PY{n+nf}{term\PYZus{}check}\PY{p}{(}\PY{n}{xb}\PY{p}{,} \PY{n}{xc}\PY{p}{,} \PY{n}{xs}\PY{p}{,} \PY{n}{xnew}\PY{p}{,} \PY{n}{N}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{}the termination critera}
+            \PY{k}{return} \PY{n}{m}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{f}\PY{p}{(}\PY{n}{xb}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{f}\PY{p}{(}\PY{n}{xc}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{p}{(}\PY{n}{f}\PY{p}{(}\PY{n}{xnew}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{f}\PY{p}{(}\PY{n}{xc}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{p}{(}\PY{n}{f}\PY{p}{(}\PY{n}{xs}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{f}\PY{p}{(}\PY{n}{xc}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n}{N} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}testing}
+        \PY{k}{def} \PY{n+nf}{f}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{}the objective function}
+            \PY{n}{x}\PY{o}{=}\PY{n}{z}
+            \PY{k}{return} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{o}{+} \PY{p}{(}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}print results}
+        \PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n+nb}{iter}\PY{p}{)} \PY{o}{=} \PY{n}{simplex\PYZus{}search}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}print(\PYZsq{}\PYZbs{}n\PYZsq{})}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{f = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{f}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{x}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{iterations = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n+nb}{iter}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Current optimum =  1.84872055837
+Current optimum =  2.87980947162
+Current optimum =  1.91394746769
+Current optimum =  0.132461620311
+Current optimum =  1.27236172992
+Current optimum =  0.516361455904
+Current optimum =  0.139739849491
+Current optimum =  0.0947731528218
+Current optimum =  0.0218302612897
+Current optimum =  0.00723261618504
+Current optimum =  0.0234872486365
+Current optimum =  0.00648150978763
+Current optimum =  0.00501702904282
+Current optimum =  8.01402718652e-05
+Current optimum =  0.00356397186498
+Current optimum =  0.00156201242228
+Current optimum =  0.000579639268912
+Current optimum =  0.000134229386486
+Current optimum =  0.000111407397121
+Current optimum =  2.44033741441e-05
+Current optimum =  1.44168605522e-05
+Current optimum =  7.24841787287e-06
+Current optimum =  5.74226451148e-06
+Current optimum =  2.61498507089e-06
+Current optimum =  2.7872144543e-07
+Current optimum =  6.31047342911e-07
+Current optimum =  5.03785171206e-07
+f =  2.7872144543e-07
+x =  [ 1.00022415  1.99952201]
+iterations =  27
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{}graphically verify the minimum}
+        \PY{k+kn}{from} \PY{n+nn}{mpl\PYZus{}toolkits}\PY{n+nn}{.}\PY{n+nn}{mplot3d} \PY{k}{import} \PY{n}{Axes3D}
+        \PY{k+kn}{from} \PY{n+nn}{matplotlib} \PY{k}{import} \PY{n}{cm}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{o}{\PYZpc{}}\PY{k}{config} InlineBackend.figure\PYZus{}formats=[\PYZsq{}svg\PYZsq{}]
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        
+        \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arange}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{,}\PY{o}{.}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{meshgrid}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)}
+        \PY{n}{z} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{1} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{p}{(}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{n}{y}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+        \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+        \PY{n}{ax} \PY{o}{=} \PY{n}{fig}\PY{o}{.}\PY{n}{gca}\PY{p}{(}\PY{n}{projection}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{3d}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax}\PY{o}{.}\PY{n}{plot\PYZus{}surface}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{z}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{parametric curve}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{cmap}\PY{o}{=}\PY{n}{cm}\PY{o}{.}\PY{n}{jet}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mf}{0.2}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}ax.legend()}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{ME596 Homework_5_files/ME596 Homework_5_2_0.pdf}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Quite sensibly the expansion and contraction coefficients, $\gamma$ and
+$\beta$, should be larger than one and between zero and one
+respectively. If values outside of this range are used, for instance by
+using a $\beta$ value greater than one, and the search will march to the
+extrema and return large function values, depending on the initial guess
+of the design vector $x_0$. The paramater $\epsilon$ mostly determines
+the precision of the final result, that is the number of decimals away
+from the absolute optima point.
+
+    \subsubsection{Problem 2}\label{problem-2}
+
+Consider the constrained optimization problem
+
+\[\mbox{Design variable} \, x = \left\{ \begin{array}{ll}
+         x & \mbox{if $x \geq 0$};\\
+        -x & \mbox{if $x < 0$}\end{array} \right. \]
+
+\[ \mbox{min } f(x) = (x_1 - 3)^3 + (x_2 -3)^2\]
+
+\[ \mbox{Subject to }\] \[\begin{array}{ll} x_1  &\leq 2 \\
+                                        x_1x_2 &= 8 \end{array}\]
+
+Nased on an exterior penalty function method, employing $r_p = 5$
+transform the problem into an unconstrained one by creating an
+unconstrained pseudo-objective function $\Phi$. If a steepest descent
+method is used to minimize $\Phi$ starting from the point $x = [3, 5]^T$
+determine the search direction $d$ that should be used
+
+Using an exterior penalty function our constraints should have the form
+
+\[r_p(max(0, g_1)^2 + |g_2|^2).\]
+
+Therefore the pseudo-objective funtion will have the form
+
+\[\Phi = (x_1 - 3)^3 + (x_2 -3)^2 + r_p(max(0, x_1 - 2)^2 + (|x_1 x_2|- 2)^2).\]
+
+Taking the gradient of the objective pseudo-function we have
+
+\[\frac{\partial \Phi}{\partial x_1}  = \frac{\partial f}{\partial x_1} + r_p(2 g_1 \frac{\partial g_1}{\partial x_1} + 2g_2 \frac{\partial g_2}{\partial x_1})\]
+
+\[\frac{\partial \Phi}{\partial x_2} = \frac{\partial f}{\partial x_2} + r_p(2 g_1 \frac{\partial g_1}{\partial x_2} + 2g_2 \frac{\partial g_2}{\partial x_2}),\]
+
+where
+
+\[\begin{array} \frac{\partial f}{\partial x_1} &=& 3(x_1 - 3)^2 \\
+                \frac{\partial g_1}{\partial x_1} &=& 1\\
+                \frac{\partial g_2}{\partial x_1} &=& |x_1x_2 - 8|x_2 \\
+                \frac{\partial f}{\partial x_2} &=& 2(x_2 -3) \\
+                \frac{\partial g_1}{\partial x_2} &=& 0 \\                                 \frac{\partial g_2}{\partial x_2} &=& |x_1x_2 -8|x_1 \end{array}.\]
+
+Substituting up we have
+
+\[\begin{array}\frac{\partial \Phi}{\partial x_1} &=& 3(x_1 - 3)^2 =r_p(2 \mbox{max}(0, x_1-2) + 2|x_1x_2 -8|) \\
+\frac{\partial \Phi}{\partial x_2} &=& 2(x_2 -3) +r_p(2|x_1x_2 - 8|x_2)\end{array}\]
+
+The direction of steepest descent, $d$, is
+$- \nabla \Phi = \langle \frac{\partial \Phi}{\partial x_1}, \frac{\partial \Phi}{\partial x_2} \rangle$.
+At $x = [3,5]^T$ we can evaluate the direction of steepests decent as
+
+\[\left. \frac{\partial \Phi}{\partial x_1}\right|_{x=(3,5)} = 5(2(1) + 2(7)(6)) = 360\]
+
+\[\left. \frac{\partial \Phi}{\partial x_2}\right|_{x=(3,5)} = 2(2) + 5(2(7)(3)) = 218\]
+
+Normalizing by the gradient so that we have a unit vector, $d$, in the
+direction of steepest descent
+
+\[\frac{\langle 360, 218 \rangle}{\sqrt{360^2 + 218^2}} = \langle 0.855, 0.518 \rangle .\]
+
+The next design point, assuming that a single variable search has been
+performed to optimize the step size (yeilding $\alpha = 0.002$), we will
+have
+
+\[x^{(i+1)} = x^{(i)} + \alpha_i d\]
+\[x^{(i+1)} = x^{(i)} - \alpha_i \nabla \Phi\]
+
+\[\begin{array} x^{(i+1)} &=& (3,5) - 0.002 \langle 0.855, 0.518 \rangle \\
+                         &=& (2.998, 4.99) \end{array}\]
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

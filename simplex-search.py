@@ -59,9 +59,6 @@ def simplex_search(f, x_start, max_iter = 100, epsilon = 1E-6, gamma = 5, beta =
 			#print('c', f(xs), f(xr), f(xw))
 		else:
 			xnew = xr
-			
-			#print('d', f(xr))
-			#my xnews are total shit! They go in the wrong direction!
 		
 		#replace vertices
 		"""
@@ -94,7 +91,7 @@ print('f = ', f)
 print('x = ', x)
 print('iterations = ', iter)
 
-
+"""
 #graphically verify the minimum
 x = np.arange(-10,10,.1)
 y = np.arange(-10,10,.1)
@@ -105,3 +102,4 @@ ax = fig.gca(projection='3d')
 ax.plot_surface(x, y, z, label='parametric curve', cmap=cm.jet, linewidth=0.2)
 #ax.legend()
 plt.show()
+"""
