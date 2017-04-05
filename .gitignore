@@ -1,0 +1,6 @@
+.ipynb_checkpoints/*
+*.out
+*.log
+*.aux
+*.gz
+Homeworks/ME596*/*
